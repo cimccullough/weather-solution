@@ -9,43 +9,41 @@ namespace weather_solution
     {
         static void Main(string[] args)
         {
-            int dayNum;
+            string dayNum;
             int maxTemp;
             int minTemp;
             List<Day> days = new List<Day>();
-            //Handle text file
+
             try
             {
                 string path = "./weather.txt";
+
+                //Read lines of the file individually and add to lines array
                 string[] lines = File.ReadAllLines(path);
 
                 foreach (string line in lines)
                 {
+                    //Bypass empty lines
                     if (line != "")
                     {
+                        //Split line into sub strings based on whitespace or * and removing empty sub strings
                         string[] subStrings = line.Split(new char[] { ' ', '*' }, StringSplitOptions.RemoveEmptyEntries);
 
 
-
+                        //Handle the line only if the first sub string is made up of digits
                         if (subStrings[0].All(char.IsDigit))
                         {
-                            dayNum = Convert.ToInt32(subStrings[0]);
+                            //Assign the max and min temp
+                            maxTemp = Convert.ToInt32(subStrings[1]);
+                            minTemp = Convert.ToInt32(subStrings[2]);
 
-                            if (subStrings[1].All(char.IsDigit))
-                            {
-                                maxTemp = Convert.ToInt32(subStrings[1]);
+                            dayNum = subStrings[0];
 
-                                if (subStrings[2].All(char.IsDigit))
-                                {
-                                    minTemp = Convert.ToInt32(subStrings[2]);
+                            //Create a new object with the day and difference
+                            Day newDay = new Day(dayNum, getDifference(maxTemp, minTemp));
 
-                                    //Create a new object with the day and difference
-                                    Day newDay = new Day(dayNum, getDifference(maxTemp, minTemp));
-
-                                    //Add object to an array
-                                    days.Add(newDay);
-                                }
-                            }
+                            //Add object to an array
+                            days.Add(newDay);
                         }
                     }
                 }
@@ -70,7 +68,7 @@ namespace weather_solution
 
                 for (int currentDif = 1; currentDif < days.Count; currentDif++)
                 {
-                    //If current array object.getTempDif is smaller, variable = current object
+                    //Compare currentDif to smallestDif
                     if (days[currentDif].getTempDif < smallestDif.getTempDif)
                     {
                         smallestDif = days[currentDif];
@@ -78,31 +76,6 @@ namespace weather_solution
                 }
                 Console.WriteLine("The day with the least variation in temperature is day #" + smallestDif.getDayNum + " with a difference of " + smallestDif.getTempDif + " degrees.");
             }
-        }
-    }
-
-    //Day class with day# and temperature difference properties and getters and setters
-    public class Day
-    {
-        int dayNum;
-        int tempDif;
-
-        public Day(int dayNum, int tempDif)
-        {
-            this.dayNum = dayNum;
-            this.tempDif = tempDif;
-        }
-
-        public int getDayNum
-        {
-            get => dayNum;
-            set => dayNum = value;
-        }
-
-        public int getTempDif
-        {
-            get => tempDif;
-            set => tempDif = value;
         }
     }
 }

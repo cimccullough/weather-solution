@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/chris/Projects/weather/weather-solution/weather-solution/weather-solution/weather-solution.csproj",
+      "projectUniqueName": "/Users/chris/Projects/weather/weather-solution/weather-solution/weather-solution.csproj",
       "projectName": "weather-solution",
-      "projectPath": "/Users/chris/Projects/weather/weather-solution/weather-solution/weather-solution/weather-solution.csproj",
+      "projectPath": "/Users/chris/Projects/weather/weather-solution/weather-solution/weather-solution.csproj",
       "packagesPath": "/Users/chris/.nuget/packages/",
-      "outputPath": "/Users/chris/Projects/weather/weather-solution/weather-solution/weather-solution/obj/",
+      "outputPath": "/Users/chris/Projects/weather/weather-solution/weather-solution/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/chris/.config/NuGet/NuGet.Config"
@@ -53,12 +53,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.osx-x64",
-            "version": "[3.1.22, 3.1.22]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
